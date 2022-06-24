@@ -1,0 +1,14 @@
+h1,
+h2,
+ul {
+    text-align: left;
+    font-family: 'Segoe UI';
+    font-size: 5rem;
+    margin-left: 2rem;
+}
+h2 {
+    font-size: 3rem;
+}
+ul {
+    font-size: 2rem;
+}
