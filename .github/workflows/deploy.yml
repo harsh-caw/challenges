@@ -46,7 +46,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Copy files to the s3 website content bucket
-        run: aws s3 sync . s3://${{ secrets.AWS_BUCKET }} --delete --follow-symlinks --exclude '.git/*' --exclude '.github/*'
+        run: aws s3 sync . s3://${{ secrets.AWS_BUCKET_NAME }} --delete --follow-symlinks --exclude '.git/*' --exclude '.github/*'
   s3_invalidate_cache:
     needs: s3_sync
     runs-on: ubuntu-latest
@@ -58,6 +58,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: 'us-east-1'
       - name: Invalidate Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
